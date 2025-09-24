@@ -259,3 +259,4 @@ class GestureController:
 if __name__ == "__main__":
     controller = GestureController()
     controller.run()
+    
