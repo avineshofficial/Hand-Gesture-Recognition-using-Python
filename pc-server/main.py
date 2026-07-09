@@ -4,6 +4,7 @@ import json
 import pyautogui
 import socket
 
+<<<<<<< HEAD
 
 WEBSOCKET_PORT = 8765
 BROADCAST_PORT = 8766
@@ -16,6 +17,22 @@ SMOOTHING_FACTOR = 0.4
 pyautogui.FAILSAFE = True
 pyautogui.PAUSE = 0
 SCREEN_WIDTH, SCREEN_HEIGHT = pyautogui.size() 
+=======
+# --- CONFIGURATION ---
+WEBSOCKET_PORT = 8765
+BROADCAST_PORT = 8766
+BROADCAST_MESSAGE = "GESTURE_SERVER_HERE"
+# Adjust these values to change speed and smoothness
+JOYSTICK_SENSITIVITY = 1.0 # How fast the cursor moves.
+SCROLL_SENSITIVITY = 20
+SMOOTHING_FACTOR = 0.4      # How smooth the cursor is. 0.4 is "medium".
+                            # (Lower = smoother, Higher = more responsive)
+
+# --- SETUP ---
+pyautogui.FAILSAFE = True
+pyautogui.PAUSE = 0
+SCREEN_WIDTH, SCREEN_HEIGHT = pyautogui.size() # Get screen dimensions once
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
 
 def get_local_ip():
     """Finds the local IP address of the PC."""
@@ -52,11 +69,20 @@ async def broadcast_server_presence():
         if 'transport' in locals():
             transport.close()
 
+<<<<<<< HEAD
 async def handler(websocket): 
     """Handles incoming WebSocket connections and all mouse actions."""
     print(f"✅ Mobile client connected from: {websocket.remote_address}")
     
    
+=======
+async def handler(websocket): # Added 'path' for library compatibility
+    """Handles incoming WebSocket connections and all mouse actions."""
+    print(f"✅ Mobile client connected from: {websocket.remote_address}")
+    
+    # Initialize the smoothed position for THIS client connection
+    # This prevents the cursor from jumping when a new client connects.
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
     smooth_x, smooth_y = pyautogui.position()
     
     try:
@@ -69,7 +95,13 @@ async def handler(websocket):
                     dx = data.get('x', 0.0)
                     dy = data.get('y', 0.0)
                     
+<<<<<<< HEAD
                    
+=======
+                    # --- UPDATED MOVEMENT LOGIC WITH SMOOTHING ---
+                    # 1. Calculate the 'raw' next position based on the LAST smoothed position.
+                    # This creates a more intuitive and less "drifty" feel.
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
                     raw_target_x = smooth_x + (dx * JOYSTICK_SENSITIVITY)
                     raw_target_y = smooth_y + (dy * JOYSTICK_SENSITIVITY)
                     
@@ -87,7 +119,11 @@ async def handler(websocket):
 
                     # 5. Move to the safe, final smoothed position
                     pyautogui.moveTo(final_x, final_y, duration=0)
+<<<<<<< HEAD
                    
+=======
+                    # --- END OF UPDATED LOGIC ---
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
 
                 elif action == 'left_click':
                     pyautogui.click()

@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 opencv-python
 mediapipe
 numpy
 pyautogui
 websockets
 Pillow
+=======
+websockets
+pyautogui
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Gesture Controller
 
 Gesture Controller is an intuitive client-server application that allows you to control your PC's mouse using your mobile device. By leveraging your smartphone's touch screen as a remote trackpad, you can perform smooth mouse movements, clicks, scrolling, and dragging seamlessly over your local network.
@@ -79,3 +80,19 @@ The repository is divided into two main components:
 2. Start the PC Server.
 3. Open the Mobile App on your device. It should automatically detect the server and connect.
 4. Use the app interface as a remote trackpad to control your computer's mouse!
+=======
+﻿# Hand-Gesture-Recognition-using-Python
+
+*Instruction --> 1:use USB cable to connect Laptop and Mobile and need to run the folders. 
+                 2:Laptop network,need to connect same network to mobile Wifi .
+                 3:Laptop Wifi properities network type should as (*private).
+
+#To run (pc-server) terminal command----> 1: cd pc-server
+                                          2: venv/Scripts/Activate.ps1
+                                          3: python main.py
+
+#To run MobileApp terrminal command---->  1: cd MobileApp
+                                          2: npx react-native start --reset-cache
+                   open send terminal-->  1: cd MobileApp
+                                          2: npx react-native run-android
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7

@@ -19,7 +19,11 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
+<<<<<<< HEAD
   runOnJS, 
+=======
+  runOnJS, // <-- 1. IMPORT runOnJS HERE
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
 } from 'react-native-reanimated';
 
 const {width} = Dimensions.get('window');
@@ -28,11 +32,16 @@ const JOYSTICK_SIZE = JOYSTICK_AREA_SIZE * 0.4;
 const JOYSTICK_MAX_OFFSET = (JOYSTICK_AREA_SIZE - JOYSTICK_SIZE) / 2;
 
 function App(): React.JSX.Element {
+<<<<<<< HEAD
   const [ipAddress, setIpAddress] = useState('10.2.21.49'); 
+=======
+  const [ipAddress, setIpAddress] = useState('10.2.21.49'); // Default IP
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
   const [isConnected, setIsConnected] = useState(false);
   const ws = useRef<WebSocket | null>(null);
   const isDragging = useSharedValue(false);
 
+<<<<<<< HEAD
  
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
@@ -41,13 +50,27 @@ function App(): React.JSX.Element {
   const scrollY = useSharedValue(0);
 
 
+=======
+  // Joystick position
+  const translateX = useSharedValue(0);
+  const translateY = useSharedValue(0);
+
+  // Scroll position
+  const scrollY = useSharedValue(0);
+
+  // Function to send data over WebSocket
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
   const sendWsMessage = (data: object) => {
     if (ws.current?.readyState === WebSocket.OPEN) {
       ws.current.send(JSON.stringify(data));
     }
   };
 
+<<<<<<< HEAD
 
+=======
+  // Server connection logic
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
   const connectToServer = () => {
     if (isConnected) {
       ws.current?.close();
@@ -67,7 +90,11 @@ function App(): React.JSX.Element {
     };
   };
 
+<<<<<<< HEAD
   
+=======
+  // Joystick gesture handler
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
   const joystickPan = Gesture.Pan()
     .onUpdate(event => {
       'worklet';
@@ -79,7 +106,11 @@ function App(): React.JSX.Element {
         translateX.value = (event.translationX / distance) * JOYSTICK_MAX_OFFSET;
         translateY.value = (event.translationY / distance) * JOYSTICK_MAX_OFFSET;
       }
+<<<<<<< HEAD
       
+=======
+      // 2. USE runOnJS DIRECTLY
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
       runOnJS(sendWsMessage)({action: 'move', x: translateX.value, y: translateY.value});
     })
     .onEnd(() => {
@@ -88,12 +119,20 @@ function App(): React.JSX.Element {
       translateY.value = withSpring(0);
     });
 
+<<<<<<< HEAD
   
+=======
+  // Scroll gesture handler
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
   const scrollPan = Gesture.Pan()
     .onUpdate(event => {
       'worklet';
       scrollY.value = event.translationY;
+<<<<<<< HEAD
       
+=======
+      // 2. USE runOnJS DIRECTLY
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
       runOnJS(sendWsMessage)({action: 'scroll', y: event.translationY});
     })
     .onEnd(() => {
@@ -101,7 +140,11 @@ function App(): React.JSX.Element {
       scrollY.value = withSpring(0);
     });
   
+<<<<<<< HEAD
  
+=======
+  // Drag button handler
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
   const handleDragPress = () => {
     isDragging.value = !isDragging.value;
     sendWsMessage({ action: isDragging.value ? 'drag_start' : 'drag_end' });
@@ -169,7 +212,11 @@ function App(): React.JSX.Element {
   );
 }
 
+<<<<<<< HEAD
 
+=======
+// ... (The styles block at the bottom remains the same)
+>>>>>>> 4f74667a270dfdc5b6ed3cdf6996904f5af9b5f7
 const styles = StyleSheet.create({
   container: {
     flex: 1,
